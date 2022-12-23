@@ -1,5 +1,8 @@
-# part 1 = 111210
-# part 2 =  15447387620
+# As you finally start making your way upriver, you realize your pack is much lighter than you remember. Just then, one of the items from your pack goes flying overhead. Monkeys are playing Keep Away with your missing things!
+
+# To get your stuff back, you need to be able to predict where the monkeys will throw your items. After some careful observation, you realize the monkeys operate based on how worried you are about each item.
+
+# You take some notes (your puzzle input) on the items each monkey currently has, how worried you are about those items, and how the monkey makes decisions based on your worry level.
 
 from collections import defaultdict
 
@@ -101,3 +104,7 @@ thousandRoundsOfMB = determine_monkey_activity_1()
 print("Part 2", thousandRoundsOfMB)
 
 #could merge the determine monkey activity methods and pass the rounds 
+
+# answers 
+# Part 1 - 111210
+# Part 2 - 15447387620

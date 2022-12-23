@@ -10,6 +10,7 @@ Day's i need to go back and fix after messing up my branch :(
 - Day 14 - minus part 2 
 - Day 15 - minus part 2 
 - Day 16 - minus part 2 
+- Day 17 
 - Day 18 - minus part 2 
 - Day 20 - minus part 2 
 - Day 21 - minus part 2 
@@ -25,3 +26,6 @@ Day's that work.
 - Day 6 
 - Day 7 
 - Day 9
+- Day 11
+- Day 19
+
