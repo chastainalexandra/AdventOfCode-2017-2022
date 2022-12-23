@@ -22,3 +22,4 @@ Day's that work.
 - Day 3 
 - Day 4
 - Day 6 
+- Day 7 
