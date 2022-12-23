@@ -4,6 +4,7 @@ filename = "day05.txt"
 
 stacks = []
 moves = []
+moves2 = []
 
 with open(filename, "r") as f:
     for line in f:
@@ -16,6 +17,8 @@ with open(filename, "r") as f:
         if 'move' in line:
             splitLine = line.strip().split(' ')
             moves.append([int(splitLine[1]), int(
+                splitLine[3]), int(splitLine[5])])
+            moves2.append([int(splitLine[1]), int(
                 splitLine[3]), int(splitLine[5])])
         else:
             if line != '\n' and line[1] != '1':
@@ -35,13 +38,19 @@ for j in range(0, stackCount):
     sol += stacks[j][0]
 print("part 1 -", sol)
 
-for move in moves:
-    els = []
-    for i in range(0, move[0]):
-        els.append(stacks[move[1] - 1].popleft())
-    for i in range(0, move[0]):
-        stacks[move[2] - 1].appendleft(els.pop())
 
-for j in range(0, stackCount):
-    sol2 += stacks[j][0]
-print("part 2 - ", sol2)
+
+def part2(): 
+    for move in moves2:
+        els = []
+        for i in range(0, move[0]):
+            els.append(stacks[move[1] - 1].popleft())
+        for i in range(0, move[0]):
+            stacks[move[2] - 1].appendleft(els.pop())
+    for j in range(0, stackCount):
+        sol2 += stacks[j][0]
+print("part 2 -", part2())
+
+# answers 
+# Part 1 - RFFFWBPNS
+# Part 2 - CQQBBJFCS

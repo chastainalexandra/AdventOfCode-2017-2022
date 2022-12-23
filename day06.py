@@ -50,3 +50,8 @@ with open(filename, "r") as f: #standard read the file line
     for line in f:
         print(findMarkerPart1(line))
         print(findMarkerPart2(line))
+
+
+# answers 
+# Part 1 - 1300
+# Part 2 - 3986
