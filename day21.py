@@ -1,14 +1,13 @@
-from functools import lru_cache
+
 from pprint import pprint
 
-with open("puzzleFile.txt") as fin:
+with open("day21.txt") as fin:
     lines = fin.read().strip().split("\n")
 
 
 lookup = {}
 
 
-@lru_cache(None)
 def compute(name):
     if isinstance(lookup[name], int):
         return lookup[name]
@@ -36,3 +35,7 @@ pprint(lookup)
 
 ans = compute("root")
 print(ans)
+
+# answers 
+# Part 1 - 78342931359552
+# Part 2 - 
