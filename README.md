@@ -3,7 +3,6 @@ Advent of Code 2022
 
 Day's i need to go back and fix after messing up my branch :( 
 - Day 5 - Part 2 throwing compile error   
-- Day 8
 - Day 10 
 - Day 12 
 - Day 13 - minus part 2 
@@ -24,6 +23,7 @@ Day's that work.
 - Day 4
 - Day 6 
 - Day 7 
+- Day 8
 - Day 9
 - Day 11
 - Day 19
