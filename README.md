@@ -12,7 +12,7 @@ Day's i need to go back and fix after messing up my branch :(
 - Day 16 - minus part 2 
 - Day 17 
 - Day 18 - minus part 2 
-- Day 20 - minus part 2 
+- Day 20 
 - Day 21 - minus part 2 
 - Day 22
 
