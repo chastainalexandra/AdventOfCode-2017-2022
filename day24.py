@@ -1,2 +1,3 @@
-with open("puzzleFile.txt") as fin:
-    data = fin.read().strip().split("\n")
+# answers 
+# Part 1 - 
+# Part 2 - 
