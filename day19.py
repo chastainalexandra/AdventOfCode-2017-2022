@@ -5,7 +5,7 @@ from collections import defaultdict
 from functools import cache
 import re
 
-with open('puzzleFile.txt','r') as f:
+with open('day19.txt','r') as f:
     puzzleFile=f.read().splitlines()
 
 # Determine the quality level of each blueprint by multiplying that blueprint's

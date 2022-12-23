@@ -1,7 +1,7 @@
 # part 1 = 4146
 from collections import defaultdict
 
-with open("puzzleFile.txt") as fin:
+with open("day23.txt") as fin:
     dataFile = fin.read().strip().split("\n")
 
 
