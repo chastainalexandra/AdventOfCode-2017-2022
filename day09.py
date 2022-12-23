@@ -36,3 +36,8 @@ for line in dataFile:
                         break
 
 print("Part 1 - ",len(set(visited[-1])), "Part 2 - ",len(set(visited[0])))
+
+
+# answers 
+# Part 1 
+# Part 2
