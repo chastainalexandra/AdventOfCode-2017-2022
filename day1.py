@@ -1,4 +1,4 @@
-with open("puzzleFile.txt") as fin:
+with open("day01.txt") as fin:
     raw_data = fin.read().strip()
     parts = raw_data.split("\n\n")
 
@@ -10,3 +10,4 @@ for part in parts:
 
 
 print(max(loads))
+print(sum(sorted(loads)[-3:]))

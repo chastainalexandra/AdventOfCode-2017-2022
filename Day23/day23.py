@@ -1,3 +1,4 @@
+# part 1 = 4146
 from collections import defaultdict
 
 with open("puzzleFile.txt") as fin:
@@ -115,7 +116,5 @@ for round in range(10):
 # Find bounding box
 min_row, max_row, min_col, max_col = get_bounds(elves)
 
-print(min_row, max_row)
-print(min_col, max_col)
 
-print((max_row - min_row + 1) * (max_col - min_col + 1) - len(elves))
+print("part 1 - " ,(max_row - min_row + 1) * (max_col - min_col + 1) - len(elves))
