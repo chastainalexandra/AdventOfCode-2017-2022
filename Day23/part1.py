@@ -12,14 +12,14 @@ checks = [
 ]
 
 
-n = len(grid)
-m = len(grid[0])
+n = len(dataFile)
+m = len(dataFile[0])
 
 elves = set()
 
 for i in range(n):
     for j in range(m):
-        if grid[i][j] == "#":
+        if dataFile[i][j] == "#":
             elves.add((i, j))
 
 
