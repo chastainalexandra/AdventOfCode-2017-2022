@@ -1,6 +1,6 @@
 from collections import deque
 
-filename = "puzzleFile.txt"
+filename = "day05.txt"
 
 stacks = []
 moves = []
@@ -25,13 +25,23 @@ with open(filename, "r") as f:
                         stacks[i].append(stripLine[i][1])
 
 for move in moves:
+    for i in range(0, move[0]):
+        el = stacks[move[1] - 1].popleft()
+        stacks[move[2] - 1].appendleft(el)
+
+sol = ''
+sol2 = ''
+for j in range(0, stackCount):
+    sol += stacks[j][0]
+print("part 1 -", sol)
+
+for move in moves:
     els = []
     for i in range(0, move[0]):
         els.append(stacks[move[1] - 1].popleft())
     for i in range(0, move[0]):
         stacks[move[2] - 1].appendleft(els.pop())
 
-sol = ''
 for j in range(0, stackCount):
-    sol += stacks[j][0]
-print(sol)
+    sol2 += stacks[j][0]
+print("part 2 - ", sol2)

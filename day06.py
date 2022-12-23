@@ -1,7 +1,7 @@
 from collections import deque
 import copy
 
-filename = "puzzleFile.txt"
+filename = "day06.txt"
 
 # A shallow copy constructs a new compound object and then (to the extent possible)
 # inserts references into it to the objects found in the original.
@@ -21,7 +21,19 @@ def allUnique(b):
     return True
 
 
-def findMarker(line):
+def findMarkerPart1(line):
+    i = 0
+    buff = deque([])
+    for ch in line:
+        if len(buff) == 4: # number of distince characters 
+            buff.popleft()
+        buff.append(ch)
+        if i >= 3 and allUnique(buff):
+            return i + 1
+        i += 1
+    return (-1)
+    
+def findMarkerPart2(line):
     i = 0
     buff = deque([])
     for ch in line:
@@ -36,4 +48,5 @@ def findMarker(line):
 
 with open(filename, "r") as f: #standard read the file line 
     for line in f:
-        print(findMarker(line))
+        print(findMarkerPart1(line))
+        print(findMarkerPart2(line))
