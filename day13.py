@@ -5,36 +5,38 @@
 
 from functools import cmp_to_key
 
-def part01(data):
-    def compare(a, b):
-        if isinstance(a, list) and isinstance(b, int):
-            b = [b]
-        if isinstance(a, int) and isinstance(b, list):
-            a = [a]
-        if isinstance(a, int) and isinstance(b, int):
-            if a < b:
+def compare(a, b):
+    if isinstance(a, list) and isinstance(b, int):
+        b = [b]
+    if isinstance(a, int) and isinstance(b, list):
+        a = [a]
+    if isinstance(a, int) and isinstance(b, int):
+        if a < b:
+            return 1
+        if a == b:
+            return 0
+        return -1
+
+    if isinstance(a, list) and isinstance(b, list):
+        i = 0
+        while i < len(a) and i < len(b):
+            x = compare(a[i], b[i])
+            if x == 1:
                 return 1
-            if a == b:
+            if x == -1:
+                return -1
+
+            i += 1
+
+        if i == len(a):
+            if len(a) == len(b):
                 return 0
-            return -1
+            return 1  # a ended first
 
-        if isinstance(a, list) and isinstance(b, list):
-            i = 0
-            while i < len(a) and i < len(b):
-                x = compare(a[i], b[i])
-                if x == 1:
-                    return 1
-                if x == -1:
-                    return -1
+        return -1
 
-                i += 1
+def part01(data):
 
-            if i == len(a):
-                if len(a) == len(b):
-                    return 0
-                return 1  # a ended first
-
-            return -1
     ans = 0
 
     for i, block in enumerate(data):
@@ -51,41 +53,11 @@ def part01(data):
 # Using the same rules as before, organize all packets - the ones in your list of received packets as well as the two divider packets - into the correct order.
 
 def part02(data): 
-    def compare(a, b):
-        if isinstance(a, list) and isinstance(b, int):
-            b = [b]
-
-        if isinstance(a, int) and isinstance(b, list):
-            a = [a]
-
-        if isinstance(a, int) and isinstance(b, int):
-            if a < b:
-                return 1
-            if a == b:
-                return 0
-            return -1
-
-        if isinstance(a, list) and isinstance(b, list):
-            i = 0
-            while i < len(a) and i < len(b):
-                x = compare(a[i], b[i])
-                if x == 1:
-                    return 1
-                if x == -1:
-                    return -1
-                i += 1
-
-            if i == len(a):
-                if len(a) == len(b):
-                    return 0
-                return 1  # a ended first
-
-            return -1
-
-    lists = list(map(eval, data))
+    lists = list(map(eval, data)) #error here!
     lists.append([[2]])
     lists.append([[6]])
     lists = sorted(lists, key=cmp_to_key(compare), reverse=True)
+
 
     for i, li in enumerate(lists):
         if li == [[2]]:
@@ -95,9 +67,12 @@ def part02(data):
 
     print(a * b)
 
+    
+
 if __name__ == "__main__":
    with open("day13.txt") as fin:
     lines = fin.read().strip().split("\n\n")
+
    part01(lines)
    part02(lines)
 
