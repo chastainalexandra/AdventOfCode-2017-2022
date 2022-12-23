@@ -51,3 +51,7 @@ for i in range(n):
 
 print("part 1 - ", part1)
 print("part 2 - ", part2)
+
+# answers 
+# Part 1 
+# Part 2
