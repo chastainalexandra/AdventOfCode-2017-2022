@@ -5,7 +5,6 @@ Day's i need to go back and fix after messing up my branch :(
 - Day 5 - Part 2 throwing compile error   
 - Day 12 - minus part 2 
 - Day 13 - minus part 2 
-- Day 14 - minus part 2 
 - Day 15 - minus part 2 
 - Day 16 - minus part 2 
 - Day 17 
@@ -28,7 +27,7 @@ Day's that work.
 - Day 11
 - Day 12 - minus part 2
 - Day 13 - minus part 2 
-- Day 14 - minus part 2 
+- Day 14
 - Day 15 - minus part 2 
 - Day 16 - minus part 2
 - Day 19
