@@ -12,8 +12,7 @@
 
 from string import ascii_lowercase
 from heapq import heappop, heappush
-import string
-import collections
+import sys
 
 def part01(lines): 
     grid = [list(line) for line in lines]
@@ -71,63 +70,69 @@ def part01(lines):
 # However, the trail should still be direct, taking the fewest steps to reach its goal. 
 # So, you'll need to find the shortest path from any square at elevation a to the square marked E.
 
+def step(currentPos, nextStep, steps):
+    global heightMapSize, heightMap, numSteps
+    # Invalid step
+    if (
+        currentPos[0] + nextStep[0] < 0
+        or currentPos[1] + nextStep[1] < 0
+        or currentPos[0] + nextStep[0] >= heightMapSize[0]
+        or currentPos[1] + nextStep[1] >= heightMapSize[1]
+        or (
+            ord(heightMap[currentPos[0] + nextStep[0]][currentPos[1] + nextStep[1]])
+            - ord(heightMap[currentPos[0]][currentPos[1]])
+            > 1
+            and heightMap[currentPos[0]][currentPos[1]] != "S"
+        )
+        or numSteps[currentPos[0] + nextStep[0]][currentPos[1] + nextStep[1]]
+        <= steps + 1
+        or (
+            heightMap[currentPos[0] + nextStep[0]][currentPos[1] + nextStep[1]] == "E"
+            and ord("z") - ord(heightMap[currentPos[0]][currentPos[1]]) > 1
+        )
+    ):
+        return
+    newPos = [currentPos[0] + nextStep[0], currentPos[1] + nextStep[1]]
+    steps += 1
+    numSteps[newPos[0]][newPos[1]] = steps
+    step(newPos, (0, 1), steps)
+    step(newPos, (1, 0), steps)
+    step(newPos, (0, -1), steps)
+    step(newPos, (-1, 0), steps)
+
+def findChar(c):
+    global heightMapSize, heightMap
+    for i in range(heightMapSize[0]):
+        for j in range(heightMapSize[1]):
+            if heightMap[i][j] == c:
+                return [i, j]
 
 def part02():
-    possible_origins = []
-    dest = None
-    with open('day12.txt') as f:
-        heightmap = []
-        for i, line in enumerate(f):
-            line = line.strip()
-            for j, char in enumerate(line):
-                if char == 'a':
-                    possible_origins.append((j, i))
-            if line.find('E') != -1:
-                dest = (line.index('E'), i)
-                line = line.replace('E', 'z')
-            heightmap.append([string.ascii_lowercase.index(x) for x in line])
-
-
-    def next_steps(heightmap, pos):
-        options = []
-        for (x, y) in [(0, -1), (0, 1), (1, 0), (-1, 0)]:
-            new_pos = (pos[0] + x, pos[1] + y)
-            if new_pos[0] < 0 or new_pos[1] < 0 or new_pos[0] >= len(heightmap[0]) or new_pos[1] >= len(heightmap):
-                continue
-            if heightmap[pos[1] + y][pos[0] + x] <= heightmap[pos[1]][pos[0]] + 1:
-                options.append(new_pos)
-        return options
-
-
-    def find_route(origin):
-        queue = collections.deque()
-        queue.extend([[origin, x] for x in next_steps(heightmap, origin)])
-        visited = set()
-        while len(queue):
-            path = queue.popleft()
-            steps = next_steps(heightmap, path[-1])
-            for step in steps:
-                if step == dest:
-                    return len(path)
-                if step not in visited:
-                    visited.add(step)
-                    queue.append(path + [step])
-        return None
-
-
-    shortest_route = None
-    for o in possible_origins:
-        new_len = find_route(o)
-        if new_len is not None and (shortest_route is None or new_len < shortest_route):
-            print(f"new best: {new_len}")
-            shortest_route = new_len
-
-        print(shortest_route)
+    endPos = findChar("E")
+    minSteps = sys.maxsize
+    for i in range(heightMapSize[0]):
+        for j in range(heightMapSize[1]):
+            if heightMap[i][j] == "S" or heightMap[i][j] == "a":
+                initialPos = [i, j]
+                numSteps[initialPos[0]][initialPos[1]] = 0
+                step(initialPos, (0, 1), 0)
+                step(initialPos, (1, 0), 0)
+                step(initialPos, (0, -1), 0)
+                step(initialPos, (-1, 0), 0)
+                minSteps = min(minSteps, numSteps[endPos[0]][endPos[1]])
+    print(minSteps)
 
 if __name__ == "__main__":
    with open("day12.txt") as fin:
     lines = fin.read().strip().split("\n")
    part01(lines)
+
+   file = open("day12.txt")
+
+   data = file.readlines()
+
+   heightMapSize = (len(data), len(data[0]) - 1)
+   heightMap = [["" for i in range(heightMapSize[1])] for j in range(heightMapSize[0])]
    part02()
 
 # answers 
