@@ -1,4 +1,3 @@
-# part 1 = 4146
 from collections import defaultdict
 
 with open("day23.txt") as fin:
@@ -118,3 +117,8 @@ min_row, max_row, min_col, max_col = get_bounds(elves)
 
 
 print("part 1 - " ,(max_row - min_row + 1) * (max_col - min_col + 1) - len(elves))
+
+
+# answers 
+# Part 1 - 4146
+# Part 2 - 
