@@ -3,7 +3,6 @@ Advent of Code 2022
 
 Day's i need to go back and fix after messing up my branch :( 
 - Day 13 - minus part 2 
-- Day 16 - minus part 2 
 - Day 17 
 - Day 22
 
@@ -25,7 +24,7 @@ Day's that work.
 - Day 13 - minus part 2 
 - Day 14
 - Day 15
-- Day 16 - minus part 2
+- Day 16 
 - Day 18
 - Day 19
 - Day 20
