@@ -1,122 +1,71 @@
 from collections import defaultdict
+with open('day23.txt','r') as f:
+    text=f.read().splitlines()
 
-with open("day23.txt") as fin:
-    dataFile = fin.read().strip().split("\n")
+N=(0,-1)
+S=(0,1)
+E=(1,0)
+W=(-1,0)
+NE=(1,-1)
+NW=(-1,-1)
+SE=(1,1)
+SW=(-1,1)
+all_dir=[N,S,E,W,NE,NW,SE,SW]
 
+grid=[[x for x in r] for r in text]
 
-checks = [
-    [[1, 2, 3], 2],
-    [[7, 6, 5], 6],
-    [[5, 4, 3], 4],
-    [[1, 0, 7], 0]
-]
+def find_dest(pos, grid, cycle):
+    empty = {(x,y) for x,y in all_dir if (pos[1]+y<0 or pos[1]+y>=len(grid) or pos[0]+x<0 or pos[0]+x>=len(grid[0])) or grid[pos[1]+y][pos[0]+x]!='#'}
+    if len(empty)==8:
+        return
+    for o in range(cycle, cycle + 4):
+        if o%4==0:  
+            if NW in empty and N in empty and NE in empty:
+                return N
+        if o%4==1:
+            if SW in empty and S in empty and SE in empty:
+                return S
+        if o%4==2:
+            if NW in empty and W in empty and SW in empty:
+                return W
+        if o%4==3:
+            if NE in empty and E in empty and SE in empty:
+                return E
 
-
-n = len(dataFile)
-m = len(dataFile[0])
-
-elves = set()
-
-for i in range(n):
-    for j in range(m):
-        if dataFile[i][j] == "#":
-            elves.add((i, j))
-
-
-dirs = [
-    [0, 1],
-    [-1, 1],
-    [-1, 0],
-    [-1, -1],
-    [0, -1],
-    [1, -1],
-    [1, 0],
-    [1, 1]
-]
-
-
-def get_bounds(elves):
-    min_row = 1 << 60
-    max_row = -(1 << 60)
-    min_col = 1 << 60
-    max_col = -(1 << 60)
-
-    for row, col in elves:
-        min_row = min(min_row, row)
-        max_row = max(max_row, row)
-
-        min_col = min(min_col, col)
-        max_col = max(max_col, col)
-
-    return min_row, max_row, min_col, max_col
-
-
-def print_elves(elves):
-    min_row, max_row, min_col, max_col = get_bounds(elves)
-    for row in range(min_row, max_row + 1):
-        for col in range(min_col, max_col + 1):
-            if (row, col) in elves:
-                print("#", end="")
-            else:
-                print(".", end="")
-
-        print()
-
-
-for round in range(10):
-    # Stage 1: make proposals
-    propose = {}
-    proposed = defaultdict(int)
-    for elf in elves:
-        row, col = elf
-
-        # If elf has no neighbors, continue
-        good = False
-        for drow, dcol in dirs:
-            if (row + drow, col + dcol) in elves:
-                good = True
-                break
-        if not good:
-            continue
-
-        for check_dirs, propose_dir in checks:
-            good = True
-            for d in check_dirs:
-                drow, dcol = dirs[d]
-                if (row + drow, col + dcol) in elves:
-                    good = False
-                    break
-
-            if not good:
-                continue
-
-            drow, dcol = dirs[propose_dir]
-            propose[elf] = (row + drow, col + dcol)
-            proposed[propose[elf]] += 1
-            break
-
-    # Stage 2: do the proposals
-    new_elves = set()
-    for elf in elves:
-        if elf in propose:
-            new_loc = propose[elf]
-            if proposed[new_loc] > 1 or proposed[new_loc] == 0:
-                new_elves.add(elf)
-            else:
-                new_elves.add(new_loc)
+cycles=5000
+curr_empty=0
+for c in range(cycles):
+    prev_empty=curr_empty
+    dest = {}
+    dest_counts = defaultdict(int)
+    moved=False
+    for j, row in enumerate(grid):
+        for i, e in enumerate(row):
+            if e=='#':
+                if goto :=find_dest((i,j), grid,c):
+                    dest[(i,j)]=i+goto[0],j+goto[1],
+                    dest_counts[i+goto[0],j+goto[1]]+=1
+                    moved=True
+                else:
+                    dest[(i,j)]=(i,j)
+                    dest_counts[(i,j)]=1
+    xmin,xmax = min(x[0] for x in dest_counts), max(x[0] for x in dest_counts)
+    ymin, ymax = min(x[1] for x in dest_counts), max(x[1] for x in dest_counts)
+    new_grid = [['.' for _ in range(xmin, xmax+1)] for _ in range(ymin, ymax+1)]
+    grid_map = {(q,v):(grid_col_idx,grid_row_idx) for grid_row_idx, v in enumerate(range(ymin, ymax+1)) for grid_col_idx, q in enumerate(range(xmin, xmax+1))}
+    for pos, goto in dest.items():
+        if dest_counts[goto]==1:
+            move = grid_map[goto]
         else:
-            new_elves.add(elf)
-
-    # Rotate stuff
-    checks = checks[1:] + [checks[0]]
-    elves = new_elves
-
-
-# Find bounding box
-min_row, max_row, min_col, max_col = get_bounds(elves)
-
-
-print("part 1 - " ,(max_row - min_row + 1) * (max_col - min_col + 1) - len(elves))
+            move = grid_map[pos]
+        new_grid[move[1]][move[0]]='#'
+    grid=new_grid
+    curr_empty = sum(sum(1 for x in row if x=='.') for row in grid)
+    if c==9:
+        print(f'p1: {curr_empty}')
+    if not moved:
+        print(f'p2: {c+1}')
+        break
 
 
 # answers 
