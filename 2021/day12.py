@@ -88,4 +88,4 @@ if __name__ == "__main__":
     input = fin.read().strip()
     data = [i.split("-") for i in input.split("\n")]
 part01(data) #Answer 3292
-part02(data) #Answer 
+part02(data) #Answer 89592
