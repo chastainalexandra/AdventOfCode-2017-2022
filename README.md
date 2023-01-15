@@ -1,18 +1,18 @@
 # Advent Of Code 2017 - 2022
 
-# Advent of Code 2017
-Borrowed how to pull problems, and running set up from https://github.com/encse/adventofcode
-Running
-To run the project:
+## Advent of Code 2017 - 2020
+Borrowed how to pull problems, and running set up from https://github.com/encse/adventofcode 
+
+### To run the project:
 
 Install .NET Core
 Clone the repo
 Get help with dotnet run
-
 Usage: dotnet run [arguments]
+
 1) To run the solutions and admire your advent calendar:
 
- [year]/[day|all]      Solve the specified problems
+ [year]/[day|all]      Solve the specified problemsx
  today                 Shortcut to the above
  [year]                Solve the whole year
  all                   Solve everything
@@ -47,16 +47,11 @@ Work on part 1. Check the solution with the upload today task. Continue with par
 
 Note: this feature relies on the "Memento Inputs" extension to store your session cookie, you need to set it up in advance from the Command Palette with Install Extensions.
 
-# Advent of Code 2018
 
-# Advent of Code 2019
-
-# Advent of Code 2020
-
-# Advent of Code 2021
+## Advent of Code 2021
 in progress 
 
-# Advent of Code 2022
+## Advent of Code 2022
 Completed in Python 
 
 
