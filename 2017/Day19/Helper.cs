@@ -25,9 +25,9 @@ public class Helper {
                 case '+':
                     (directionCol, directionRow) = (
                             from packet in new[] { (drow: directionCol, directionCol: -directionRow), (drow: -directionCol, directionCol: directionRow)}
-                            let icolT = intersectionCol + packet.directionCol
-                            let irowT = intersectionRow + packet.drow
-                            where icolT >= 0 && icolT < columnCol && irowT >= 0 && irowT < columnRow && fd[irowT][icolT] != ' '
+                            let columnT = intersectionCol + packet.directionCol
+                            let rowT = intersectionRow + packet.drow
+                            where columnT >= 0 && columnT < columnCol && rowT >= 0 && rowT < columnRow && fd[rowT][columnT] != ' '
                             select (packet.directionCol, packet.drow)
                         ).Single();
                     break;

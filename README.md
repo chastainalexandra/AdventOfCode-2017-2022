@@ -2,7 +2,8 @@
 ## Advent of Code 2017 (C#)
  - Complete code base upload
 ## Advent of Code 2018 (C#)
- - Looking for old code why didn't i put it in a repo 
+ - Used new input files to revalidate answers
+ - Day06, Day11 and Day19 Part 2 need to be reworked 
 ## Advent of Code 2019 (C#)
  - Looking for old code why didn't i put it in a repo 
 ## Advent of Code 2020 (C#)

@@ -8,7 +8,7 @@ public class Solve {
         var fd = fileData.Split('\n');
         var columnRow = fd.Length;
         var columnCol = fd[0].Length;
-        var cells = new Dictionary<(int irow, int icol), VirusStates>();
+        var cells = new Dictionary<(int row, int column), VirusStates>();
         for (int r = 0; r < columnRow; r++) {
             for (int c = 0; c < columnCol; c++) {
                 if (fd[r][c] == '#') {
